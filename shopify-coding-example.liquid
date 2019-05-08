@@ -1,0 +1,40 @@
+{% comment %} 1. Describe how you would make a line of text in a homepage section editable from theme customization. {% endcomment %}
+<p>{{ section.settings.editableText }}</p>
+{% comment %} Where 'editableText' is whatever you'd like the name of the editable section to be. {% endcomment %}
+
+{% comment %} 2. How would you add the collection featured image as a banner on the collection page? {% endcomment %}
+ {% if collection.image %}
+        <img class="hero-fixed-width__image"
+             src="{{ collection.image | img_url: 'medium' }}"
+             alt="{{ collection.image.alt | escape }}">
+  {%endif %}
+{% comment %} I'd place this in some kind of  full-width div then use style tags to position it and ensure it resizes responsively.{% endcomment %}
+
+{% comment %} 3. Using liquid code and HTML, create a simple pagination container, "< 1 2 ... 5 >". {% endcomment %}
+{% for product in collections.frontpage.products %}
+    {% if forloop.first == true %}
+        First time through!
+    {% else %}
+        Not the first time.
+    {% endif %}
+{% endfor %}
+
+{% comment %} 4. Using liquid code, access the product named "Blue T-Shirt". Store the id, title, handle, price, url, and image in variables. {% endcomment %}
+{% comment %} Could probably also use the "blueShirt" variable like this for subsequent lines after the first "blueShirtId.id" but wanted to keep to the challenge guidelines {% endcomment %}
+{% assign blueShirt = all_products['wayfarer-shades'] %}
+{% assign blueShirtId = all_products['wayfarer-shades'].id %}
+{% assign blueShirtTitle = all_products['wayfarer-shades'].title %}
+{% assign blueShirtHandle = all_products['wayfarer-shades'].handle %}
+{% assign blueShirtPrice = all_products['wayfarer-shades'].price %}
+{% assign blueShirtUrl = all_products['wayfarer-shades'].url %}
+{% assign blueShirtImage = all_products['wayfarer-shades'].image %}
+
+
+{% comment %} 5. Using liquid code, create a key:value array using the list below. Loop through the array. Upon key type, store the value in a variable to be used later.
+
+    fruit:apple
+    vegetable:carrot
+    cloth:t-shirt
+    denim:jeans {% endcomment %}
+
+{% comment %} I'm not sure it's possible to make associative arrays in liquid. I'd be happy to demonstrate this in JavaScript, just let me know. {% endcomment %}
